@@ -7,14 +7,13 @@ $("#submit").on("click", function(event){
       devoured: eat
     };
 
-    // Send the PUT request.
+
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
       data: eatState
     }).then(
       function() {
         console.log("changed devoured", eat);
-        // Reload the page to get the updated list
         location.reload();
       }
     );
