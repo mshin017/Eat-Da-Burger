@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="text-center">Eat-da-Burger!!!</h1>
+        <h4 class="text-center">Do you Love Burgers, but just can't keep track of all the burgers you want to eat?</h4>
+        <h5 class="text-center">Use this handy dandy tool to keep track of your burgers!</h5>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="text-center">Burgers Ready to Eat!</h2>
+            <hr>
+            <ol class="text-center">
+            {{#each burger}}
+                {{#unless this.devoured}}
+                <li>
+                    <h3>{{this.burger_name}}</h3>
+
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="devoured" value="true">
+                    <button type="submit" class="btn btn-sm btn-primary">Yummy, let's eat!</button>
+                    </form>
+                
+                </li>
+                {{/unless}}
+            {{/each}}
+            </ol>
+            <hr>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-center">Burgers that have been devoured!</h2>
+            <hr>
+            <ul class="text-center">
+            {{#each burger}}
+                {{#if this.devoured}}
+                <li>
+                    <h3>{{this.burger_name}}</h3>
+
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="devoured" value="false">
+                    <button type="submit" class="btn btn-sm btn-danger">EAT da burger!</button>
+                    </form>
+            
+                </li>
+                {{/if}}
+            {{/each}}
+            </ul>
+            <hr>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="text-center">Add a Burger</h2>
+    <form class="create-form text-center create-update-form" action="/" method="POST">
+
+    <div class="form-group">
+        <label for="ca">Burger Name:</label>
+        <input type="text" id="ca" name="burger_name">
+    </div>
+
+    <button type="submit" class="btn btn-sm btn-success">Add Burger</button>
+    </form>
+</div>
